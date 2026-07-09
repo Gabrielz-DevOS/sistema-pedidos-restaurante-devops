@@ -75,7 +75,7 @@ git checkout main
 Después de subir el repositorio a GitHub, abrir:
 
 ```text
-https://github.com/GabrielCarriel1/sistema-pedidos-restaurante-devops/compare/v1.0...v2.0
+https://github.com/Gabrielz-DevOS/sistema-pedidos-restaurante-devops/compare/v1.0...v2.0
 ```
 
 En esa pantalla se puede mostrar:
