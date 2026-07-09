@@ -1,6 +1,11 @@
 export const ORDER_STATUS = {
   pending: 'Pendiente',
+  preparing: 'En preparación',
+  delivered: 'Entregado',
 };
+
+export const ORDER_STATUS_OPTIONS = Object.values(ORDER_STATUS);
+export const FILTER_ALL_STATUS = 'Todos';
 
 export function calculateOrderTotal(items) {
   return items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -41,8 +46,49 @@ export function createOrder(orderData, code) {
 }
 
 export function generateOrderCode(orders) {
-  const nextNumber = orders.length + 1;
+  const orderNumbers = orders
+    .map((order) => Number(order.code?.replace('PED-', '')))
+    .filter((orderNumber) => !Number.isNaN(orderNumber));
+  const nextNumber = orderNumbers.length > 0 ? Math.max(...orderNumbers) + 1 : 1;
   return `PED-${String(nextNumber).padStart(3, '0')}`;
+}
+
+export function filterOrders(orders, filters) {
+  const normalizedSearch = filters.searchTerm.trim().toLowerCase();
+
+  return orders.filter((order) => {
+    const matchesCustomer = order.customerName.toLowerCase().includes(normalizedSearch);
+    const matchesStatus = filters.statusFilter === FILTER_ALL_STATUS || order.status === filters.statusFilter;
+
+    return matchesCustomer && matchesStatus;
+  });
+}
+
+export function updateOrderStatus(orders, orderId, newStatus) {
+  return orders.map((order) => (order.id === orderId ? { ...order, status: newStatus } : order));
+}
+
+export function removeOrder(orders, orderId) {
+  return orders.filter((order) => order.id !== orderId);
+}
+
+export function getSalesSummary(orders) {
+  return {
+    totalOrders: orders.length,
+    totalSold: orders.reduce((total, order) => total + order.total, 0),
+    pendingOrders: orders.filter((order) => order.status === ORDER_STATUS.pending).length,
+    deliveredOrders: orders.filter((order) => order.status === ORDER_STATUS.delivered).length,
+  };
+}
+
+export function getStatusClass(status) {
+  const statusClasses = {
+    [ORDER_STATUS.pending]: 'status-pending',
+    [ORDER_STATUS.preparing]: 'status-preparing',
+    [ORDER_STATUS.delivered]: 'status-delivered',
+  };
+
+  return statusClasses[status] || 'status-pending';
 }
 
 export function formatCurrency(value) {

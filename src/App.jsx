@@ -2,21 +2,52 @@ import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import OrderList from './components/OrderList.jsx';
+import OrderFilters from './components/OrderFilters.jsx';
+import SalesSummary from './components/SalesSummary.jsx';
 import { getOrders, saveOrders } from './utils/storage.js';
-import { createOrder, generateOrderCode } from './utils/orderUtils.js';
+import {
+  FILTER_ALL_STATUS,
+  createOrder,
+  filterOrders,
+  generateOrderCode,
+  removeOrder,
+  updateOrderStatus,
+} from './utils/orderUtils.js';
 
 function App() {
   const [orders, setOrders] = useState(() => getOrders());
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState(FILTER_ALL_STATUS);
 
   useEffect(() => {
     saveOrders(orders);
   }, [orders]);
 
   const nextOrderCode = useMemo(() => generateOrderCode(orders), [orders]);
+  const filteredOrders = useMemo(
+    () => filterOrders(orders, { searchTerm, statusFilter }),
+    [orders, searchTerm, statusFilter],
+  );
 
   function handleCreateOrder(orderData) {
     const newOrder = createOrder(orderData, nextOrderCode);
     setOrders((currentOrders) => [newOrder, ...currentOrders]);
+  }
+
+  function handleStatusChange(orderId, newStatus) {
+    setOrders((currentOrders) => updateOrderStatus(currentOrders, orderId, newStatus));
+  }
+
+  function handleDeleteOrder(orderId) {
+    const shouldDelete = window.confirm('¿Desea eliminar este pedido?');
+    if (shouldDelete) {
+      setOrders((currentOrders) => removeOrder(currentOrders, orderId));
+    }
+  }
+
+  function handleClearFilters() {
+    setSearchTerm('');
+    setStatusFilter(FILTER_ALL_STATUS);
   }
 
   return (
@@ -31,16 +62,35 @@ function App() {
           <OrderForm nextOrderCode={nextOrderCode} onCreateOrder={handleCreateOrder} />
         </section>
 
-        <section className="panel list-panel" aria-labelledby="order-list-title">
-          <div className="section-heading list-heading">
-            <div>
-              <p className="section-label">Pedidos</p>
-              <h2 id="order-list-title">Pedidos registrados</h2>
+        <div className="content-column">
+          <SalesSummary orders={orders} />
+
+          <section className="panel list-panel" aria-labelledby="order-list-title">
+            <div className="section-heading list-heading">
+              <div>
+                <p className="section-label">Pedidos</p>
+                <h2 id="order-list-title">Pedidos registrados</h2>
+              </div>
+              <span className="counter">
+                {filteredOrders.length} de {orders.length} pedidos
+              </span>
             </div>
-            <span className="counter">{orders.length} pedidos</span>
-          </div>
-          <OrderList orders={orders} />
-        </section>
+
+            <OrderFilters
+              searchTerm={searchTerm}
+              statusFilter={statusFilter}
+              onSearchChange={setSearchTerm}
+              onStatusChange={setStatusFilter}
+              onClearFilters={handleClearFilters}
+            />
+
+            <OrderList
+              orders={filteredOrders}
+              onStatusChange={handleStatusChange}
+              onDeleteOrder={handleDeleteOrder}
+            />
+          </section>
+        </div>
       </main>
     </>
   );

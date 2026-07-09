@@ -101,6 +101,11 @@ h3 {
   padding: 24px 20px 40px;
 }
 
+.content-column {
+  display: grid;
+  gap: 18px;
+}
+
 .panel {
   border: 1px solid #d9dee5;
   border-radius: 6px;
@@ -138,17 +143,21 @@ h3 {
 .product-row span,
 .order-card p,
 .order-meta dt,
+.filter-field label,
+.summary-panel span,
 .empty-state p {
   color: #68707c;
   font-size: 0.9rem;
 }
 
-.form-row label {
+.form-row label,
+.filter-field label {
   font-weight: 700;
 }
 
 .form-row input,
 .product-row input,
+.order-actions select,
 .filters input,
 .filters select {
   width: 100%;
@@ -161,6 +170,7 @@ h3 {
 
 .form-row input:focus,
 .product-row input:focus,
+.order-actions select:focus,
 .filters input:focus,
 .filters select:focus {
   border-color: #4b7f52;
@@ -249,6 +259,65 @@ h3 {
   background: #276b3a;
 }
 
+.secondary-button {
+  border: 1px solid #cbd3dc;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #303741;
+  padding: 10px 12px;
+  font-weight: 700;
+}
+
+.secondary-button:hover {
+  background: #f4f5f7;
+}
+
+.danger-button {
+  border-color: #e3b7b7;
+  color: #9b2727;
+}
+
+.danger-button:hover {
+  background: #fff5f5;
+}
+
+.summary-panel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.summary-panel article {
+  display: grid;
+  gap: 5px;
+  border: 1px solid #d9dee5;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 14px;
+}
+
+.summary-panel strong {
+  color: #222222;
+  font-size: 1.25rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(150px, 190px) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 18px;
+  border: 1px solid #e2e6eb;
+  border-radius: 6px;
+  background: #fafbfc;
+  padding: 14px;
+}
+
+.filter-field {
+  display: grid;
+  gap: 6px;
+}
+
 .order-list {
   display: grid;
   gap: 14px;
@@ -277,6 +346,18 @@ h3 {
   border-color: #e3c56a;
   background: #fff8df;
   color: #7a5b00;
+}
+
+.status-preparing {
+  border-color: #dfb27a;
+  background: #fff3e5;
+  color: #8a4f00;
+}
+
+.status-delivered {
+  border-color: #9bc7a5;
+  background: #eef8f0;
+  color: #24643a;
 }
 
 .order-meta {
@@ -316,6 +397,24 @@ h3 {
   gap: 10px;
 }
 
+.order-actions {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-top: 14px;
+  border-top: 1px solid #e2e6eb;
+  padding-top: 14px;
+}
+
+.order-actions label {
+  display: grid;
+  gap: 6px;
+  color: #68707c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .empty-state {
   border: 1px dashed #cbd3dc;
   border-radius: 6px;
@@ -331,6 +430,10 @@ h3 {
 @media (max-width: 860px) {
   .app-shell {
     grid-template-columns: 1fr;
+  }
+
+  .summary-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -350,7 +453,10 @@ h3 {
     text-align: left;
   }
 
-  .order-meta {
+  .order-meta,
+  .summary-panel,
+  .filters,
+  .order-actions {
     grid-template-columns: 1fr;
   }
 }

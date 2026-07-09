@@ -1,11 +1,11 @@
 import OrderCard from './OrderCard.jsx';
 
-function OrderList({ orders }) {
+function OrderList({ orders, onStatusChange, onDeleteOrder }) {
   if (orders.length === 0) {
     return (
       <div className="empty-state">
-        <h3>No hay pedidos registrados</h3>
-        <p>Complete el formulario para crear el primer pedido del día.</p>
+        <h3>No hay pedidos para mostrar</h3>
+        <p>Registre un pedido o limpie los filtros aplicados.</p>
       </div>
     );
   }
@@ -13,7 +13,12 @@ function OrderList({ orders }) {
   return (
     <div className="order-list">
       {orders.map((order) => (
-        <OrderCard key={order.id} order={order} />
+        <OrderCard
+          key={order.id}
+          order={order}
+          onStatusChange={onStatusChange}
+          onDeleteOrder={onDeleteOrder}
+        />
       ))}
     </div>
   );

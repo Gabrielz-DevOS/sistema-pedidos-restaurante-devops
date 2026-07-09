@@ -6,7 +6,7 @@ function Header() {
           <p className="system-label">Aplicación académica DevOps</p>
           <h1>Sistema de Pedidos de Restaurante</h1>
         </div>
-        <span className="version-badge">Versión 1.0 básica</span>
+        <span className="version-badge">Versión 2.0 avanzada</span>
       </div>
     </header>
   );

@@ -1,6 +1,6 @@
-import { formatCurrency, formatDate } from '../utils/orderUtils.js';
+import { ORDER_STATUS_OPTIONS, formatCurrency, formatDate, getStatusClass } from '../utils/orderUtils.js';
 
-function OrderCard({ order }) {
+function OrderCard({ order, onStatusChange, onDeleteOrder }) {
   return (
     <article className="order-card">
       <div className="order-card-header">
@@ -8,7 +8,7 @@ function OrderCard({ order }) {
           <h3>{order.code}</h3>
           <p>{order.customerName}</p>
         </div>
-        <span className="status-badge status-pending">{order.status}</span>
+        <span className={`status-badge ${getStatusClass(order.status)}`}>{order.status}</span>
       </div>
 
       <dl className="order-meta">
@@ -36,6 +36,22 @@ function OrderCard({ order }) {
       <div className="order-total">
         <span>Total</span>
         <strong>{formatCurrency(order.total)}</strong>
+      </div>
+
+      <div className="order-actions">
+        <label>
+          Estado
+          <select value={order.status} onChange={(event) => onStatusChange(order.id, event.target.value)}>
+            {ORDER_STATUS_OPTIONS.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button className="secondary-button danger-button" type="button" onClick={() => onDeleteOrder(order.id)}>
+          Eliminar
+        </button>
       </div>
     </article>
   );
