@@ -72,6 +72,13 @@ Demostración práctica:
 5. Hacer push.
 6. Mostrar que GitHub Actions se ejecuta automáticamente.
 
+Tips de presentación:
+
+- GitHub Actions puede tardar entre 30 segundos y 2 minutos en ejecutarse. Preparar el historial de una ejecución exitosa anterior para mostrarla si el tiempo de espera es largo.
+- Abrir `.github/workflows/ci.yml` y explicar cada sección del archivo: `on`, `jobs`, `steps`. No es necesario memorizarlo, basta con leerlo en voz alta y explicarlo.
+- Si el build local falla, buscar el error en la terminal. El mensaje más común es un import mal escrito o un componente inexistente.
+- Destacar que sin CI, cualquier error de compilación se descubriría tarde, quizás después de publicar.
+
 ## Estudiante 4: Despliegue continuo
 
 Qué debe decir:
