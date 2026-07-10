@@ -146,6 +146,13 @@ Si todavía no está conectado:
 9. Deploy.
 10. Copiar la URL generada.
 
+Notas importantes de configuración:
+
+- Si Render muestra error `Exit code 1`, revisar los logs de build. El error más frecuente es que la versión de Node.js no coincide. Verificar que el entorno usa Node 20.
+- Si la URL abre pero muestra pantalla en blanco, verificar que el **Publish directory** está configurado como `dist` y no como `build` o `public`.
+- Si el auto-deploy no se activa, ir a **Settings → Deploy Hook** y activar la opción de deploy automático desde la rama `main`.
+- El primer despliegue puede tardar entre 2 y 5 minutos. Los despliegues siguientes son más rápidos.
+
 Después del cambio pequeño:
 
 1. Hacer push a GitHub.
@@ -155,7 +162,7 @@ Después del cambio pequeño:
 
 Explicación:
 
-"Antes, publicar una nueva versión podía tomar horas porque había que compilar, copiar archivos y configurar el servidor manualmente. Con GitHub, GitHub Actions y Vercel, el proceso queda automatizado desde el push."
+"Antes, publicar una nueva versión podía tomar horas porque había que compilar, copiar archivos y configurar el servidor manualmente. Con GitHub, GitHub Actions y Render, el proceso queda automatizado desde el push."
 
 ## 9. Demostrar reutilización
 
