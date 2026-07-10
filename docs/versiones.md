@@ -120,3 +120,19 @@ En esa pantalla se puede mostrar:
 ## Explicación para la exposición
 
 La versión `v1.0` muestra el sistema mínimo aprobado. La versión `v2.0` muestra cómo el sistema evolucionó por solicitudes de cambio: búsqueda, filtros, estados, eliminación y resumen. Git permite conservar ambas versiones, compararlas y regresar a una versión anterior si fuera necesario.
+
+## Política de versionado
+
+El proyecto sigue un esquema de versiones `MAYOR.MENOR`:
+
+| Tipo de cambio | Cuándo aplicarlo | Ejemplo |
+|---|---|---|
+| Versión mayor (X.0) | Cuando se agregan funcionalidades significativas nuevas o se refactoriza la arquitectura | `v1.0 → v2.0` |
+| Versión menor (X.Y) | Cuando se corrigen errores o se hacen mejoras pequeñas sin cambiar el alcance | `v2.0 → v2.1` |
+
+Criterios para crear un nuevo tag de versión:
+
+1. El código en `develop` está probado y funciona correctamente.
+2. Se fusionó `develop` hacia `main`.
+3. Se creó el tag con `git tag vX.Y` y se publicó con `git push origin vX.Y`.
+4. Se actualizaron los documentos de la carpeta `docs/` para reflejar la nueva versión.
