@@ -22,8 +22,13 @@ export function getOrders() {
 
 /**
  * Guarda la lista completa de pedidos en localStorage, sobrescribiendo la anterior.
+ * Si localStorage está lleno o no disponible, registra el error en consola sin interrumpir la app.
  * @param {Array} orders - Lista de pedidos a persistir.
  */
 export function saveOrders(orders) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
+  } catch (error) {
+    console.error('No se pudieron guardar los pedidos en localStorage:', error);
+  }
 }
