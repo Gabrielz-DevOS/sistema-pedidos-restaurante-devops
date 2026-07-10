@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import OrderCard from './OrderCard.jsx';
+import { ORDER_STATUS } from '../constants/orderStatus.js';
 
 function OrderList({ orders, onStatusChange, onDeleteOrder }) {
   if (orders.length === 0) {
@@ -27,16 +28,41 @@ function OrderList({ orders, onStatusChange, onDeleteOrder }) {
     );
   }
 
+  const STATUSES = [
+    { key: ORDER_STATUS.pending, label: 'Pendiente', countClass: 'count-pending' },
+    { key: ORDER_STATUS.preparing, label: 'Preparando', countClass: 'count-preparing' },
+    { key: ORDER_STATUS.delivered, label: 'Entregado', countClass: 'count-delivered' },
+  ];
+
   return (
-    <div className="order-list">
-      {orders.map((order) => (
-        <OrderCard
-          key={order.id}
-          order={order}
-          onStatusChange={onStatusChange}
-          onDeleteOrder={onDeleteOrder}
-        />
-      ))}
+    <div className="kanban-board">
+      {STATUSES.map((statusObj) => {
+        const columnOrders = orders.filter((o) => o.status === statusObj.key);
+        return (
+          <div className="kanban-column" key={statusObj.key}>
+            <div className="kanban-column-header">
+              <h3>{statusObj.label}</h3>
+              <span className={`kanban-count ${statusObj.countClass}`}>
+                {columnOrders.length}
+              </span>
+            </div>
+            <div className="kanban-column-content">
+              {columnOrders.length === 0 ? (
+                <div className="kanban-empty">Sin pedidos</div>
+              ) : (
+                columnOrders.map((order) => (
+                  <OrderCard
+                    key={order.id}
+                    order={order}
+                    onStatusChange={onStatusChange}
+                    onDeleteOrder={onDeleteOrder}
+                  />
+                ))
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

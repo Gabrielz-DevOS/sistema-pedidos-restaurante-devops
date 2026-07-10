@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header.jsx';
+import Sidebar from './components/Sidebar.jsx';
+import Drawer from './components/Drawer.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import OrderList from './components/OrderList.jsx';
 import OrderFilters from './components/OrderFilters.jsx';
@@ -19,6 +21,7 @@ function App() {
   const [orders, setOrders] = useState(() => getOrders());
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState(FILTER_ALL_STATUS);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     saveOrders(orders);
@@ -46,6 +49,7 @@ function App() {
   function handleCreateOrder(orderData) {
     const newOrder = createOrder(orderData, nextOrderCode);
     setOrders((currentOrders) => [newOrder, ...currentOrders]);
+    setIsDrawerOpen(false); // Cierra el drawer tras crear
   }
 
   /**
@@ -81,38 +85,24 @@ function App() {
 
 
   return (
-    <>
-      <Header />
-      <main className="app-shell">
-        <section className="panel order-panel" aria-labelledby="order-form-title">
-          <div className="section-heading">
-            <p className="section-label">Registro</p>
-            <h2 id="order-form-title">Nuevo pedido</h2>
-          </div>
-          <OrderForm nextOrderCode={nextOrderCode} onCreateOrder={handleCreateOrder} />
-        </section>
-
-        <div className="content-column">
+    <div className="dashboard-layout">
+      <Sidebar />
+      <div className="dashboard-main">
+        <Header onOpenNewOrder={() => setIsDrawerOpen(true)} />
+        
+        <main className="dashboard-content">
           <SalesSummary orders={orders} />
 
-          <section className="panel list-panel" aria-labelledby="order-list-title">
-            <div className="section-heading list-heading">
-              <div>
-                <p className="section-label">Pedidos</p>
-                <h2 id="order-list-title">Pedidos registrados</h2>
-              </div>
-              <span className="counter">
-                {filteredOrders.length} de {orders.length} pedidos
-              </span>
+          <section className="kanban-section" aria-labelledby="order-list-title">
+            <div className="kanban-header">
+              <OrderFilters
+                searchTerm={searchTerm}
+                statusFilter={statusFilter}
+                onSearchChange={setSearchTerm}
+                onStatusChange={setStatusFilter}
+                onClearFilters={handleClearFilters}
+              />
             </div>
-
-            <OrderFilters
-              searchTerm={searchTerm}
-              statusFilter={statusFilter}
-              onSearchChange={setSearchTerm}
-              onStatusChange={setStatusFilter}
-              onClearFilters={handleClearFilters}
-            />
 
             <OrderList
               orders={filteredOrders}
@@ -120,9 +110,17 @@ function App() {
               onDeleteOrder={handleDeleteOrder}
             />
           </section>
-        </div>
-      </main>
-    </>
+        </main>
+      </div>
+
+      <Drawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        title="Nuevo Pedido"
+      >
+        <OrderForm nextOrderCode={nextOrderCode} onCreateOrder={handleCreateOrder} />
+      </Drawer>
+    </div>
   );
 }
 
