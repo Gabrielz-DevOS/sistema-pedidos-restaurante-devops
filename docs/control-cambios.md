@@ -39,6 +39,14 @@ Este cambio resolvió un problema de usabilidad: a medida que el restaurante acu
 - Función reutilizable `filterOrders(orders, searchTerm, statusFilter)` en `src/utils/orderUtils.js`: aplica ambos filtros (nombre de cliente y estado) sobre el arreglo de pedidos y retorna el subconjunto que cumple las condiciones.
 - Estado `searchTerm` en `src/App.jsx`: almacena el término de búsqueda ingresado por el usuario y lo pasa como prop a `filterOrders()`.
 
+### CH-004: Agregar estados del pedido
+
+Este cambio introdujo el ciclo de vida de cada pedido dentro del restaurante. Antes, los pedidos solo quedaban registrados sin indicar su progreso. Ahora cada pedido puede tener uno de tres estados: `Pendiente`, `En preparación` y `Entregado`. Técnicamente se implementó con:
+
+- Componente `OrderCard.jsx`: muestra el estado actual del pedido y presenta un selector para cambiarlo. Al seleccionar un nuevo estado, llama a la función `updateOrderStatus()`.
+- Función `updateOrderStatus(orders, orderId, newStatus)` en `src/utils/orderUtils.js`: busca el pedido por su ID dentro del arreglo, actualiza su propiedad `status` y retorna el arreglo actualizado.
+- Estado `orders` en `src/App.jsx`: se actualiza con el resultado de `updateOrderStatus()` y se persiste con `saveOrders()`.
+
 ## Relación entre cambios, commits y versiones
 
 | Cambio | Implementación | Versión relacionada | Evidencia para mostrar |
