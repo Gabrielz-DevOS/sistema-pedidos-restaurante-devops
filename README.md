@@ -136,31 +136,38 @@ https://github.com/cgabrielcarrielm/sistema-pedidos-restaurante-devops
 ## Estructura del proyecto
 
 ```text
-src/
-  components/
-    Header.jsx
-    OrderForm.jsx
-    OrderList.jsx
-    OrderCard.jsx
-    ProductSelector.jsx
-    OrderFilters.jsx
-    SalesSummary.jsx
-  data/
-    menu.js
-  utils/
-    orderUtils.js
-    storage.js
-  App.jsx
-  main.jsx
-  styles.css
-docs/
-  control-cambios.md
-  versiones.md
-  exposicion.md
-  guia-demostracion.md
-.github/
-  workflows/
-    ci.yml
+sistema-pedidos-restaurante-devops/
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── OrderForm.jsx
+│   │   ├── OrderList.jsx
+│   │   ├── OrderCard.jsx
+│   │   ├── ProductSelector.jsx
+│   │   ├── OrderFilters.jsx
+│   │   └── SalesSummary.jsx
+│   ├── data/
+│   │   └── menu.js
+│   ├── utils/
+│   │   ├── orderUtils.js
+│   │   └── storage.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── styles.css
+├── docs/
+│   ├── control-cambios.md
+│   ├── versiones.md
+│   ├── exposicion.md
+│   ├── guia-demostracion.md
+│   ├── arquitectura.md
+│   └── glosario.md
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── index.html
+├── package.json
+├── vite.config.js
+└── render.yaml
 ```
 
 ## Reutilización de software
