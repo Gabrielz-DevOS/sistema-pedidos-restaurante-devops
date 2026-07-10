@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ORDER_STATUS_OPTIONS, formatCurrency, formatDate, getStatusClass } from '../utils/orderUtils.js';
 
 function OrderCard({ order, onStatusChange, onDeleteOrder }) {
@@ -56,5 +57,27 @@ function OrderCard({ order, onStatusChange, onDeleteOrder }) {
     </article>
   );
 }
+
+OrderCard.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired,
+    customerName: PropTypes.string.isRequired,
+    tableNumber: PropTypes.string,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        quantity: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+    total: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+  }).isRequired,
+  onStatusChange: PropTypes.func.isRequired,
+  onDeleteOrder: PropTypes.func.isRequired,
+};
 
 export default OrderCard;
