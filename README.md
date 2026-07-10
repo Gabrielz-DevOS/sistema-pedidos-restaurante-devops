@@ -201,3 +201,36 @@ Estas piezas podrían reutilizarse en sistemas simples de cafetería, tiendas pe
 - `docs/versiones.md`: explicación de v1.0 y v2.0.
 - `docs/exposicion.md`: guion dividido por estudiante.
 - `docs/guia-demostracion.md`: pasos para demostrar el proyecto frente al docente.
+- `docs/arquitectura.md`: diagrama de componentes y flujo de datos.
+- `docs/glosario.md`: definición de términos DevOps usados en el proyecto.
+
+## Guía de contribución
+
+### Convención de mensajes de commit
+
+Este proyecto sigue el estándar [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<tipo>: <descripción breve en español>
+```
+
+| Tipo | Cuándo usarlo |
+|---|---|
+| `feat` | Nueva funcionalidad |
+| `fix` | Corrección de error |
+| `docs` | Cambios en documentación |
+| `refactor` | Reestructuración de código sin cambiar comportamiento |
+| `style` | Cambios de formato o estilo visual |
+| `ci` | Cambios en el pipeline de integración continua |
+| `chore` | Tareas de mantenimiento o configuración |
+
+### Flujo de ramas
+
+```
+feature/* ──► develop ──► main
+```
+
+1. Crear rama desde `develop`: `git checkout -b feature/nombre-del-cambio develop`
+2. Desarrollar y hacer commits atómicos.
+3. Hacer merge hacia `develop`.
+4. Cuando `develop` esté estable, hacer merge hacia `main` y crear un tag de versión.
