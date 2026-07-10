@@ -17,7 +17,7 @@ No utiliza backend, base de datos externa, autenticación ni APIs externas. Los 
 - LocalStorage
 - Git y GitHub
 - GitHub Actions
-- Vercel
+- Render
 
 ## Funcionalidades
 
@@ -81,18 +81,21 @@ El proceso de integración continua:
 4. Ejecuta `npm run build`.
 5. Falla si la aplicación no compila correctamente.
 
-## Despliegue en Vercel
+## Despliegue en Render
 
-Configuración recomendada en Vercel:
+Configuración recomendada en Render:
 
-- Framework: Vite
+- Tipo de servicio: Static Site
+- Rama: `main`
 - Build command: `npm run build`
-- Output directory: `dist`
+- Publish directory: `dist`
 
-URL de Vercel:
+También se incluye el archivo `render.yaml` para crear el servicio como Blueprint.
+
+URL de Render:
 
 ```text
-Pendiente: colocar aquí la URL generada por Vercel
+Pendiente: colocar aquí la URL generada por Render
 ```
 
 ## Repositorio en GitHub

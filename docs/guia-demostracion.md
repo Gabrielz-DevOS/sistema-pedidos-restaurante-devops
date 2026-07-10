@@ -117,24 +117,25 @@ En GitHub:
 2. Ver la ejecución automática.
 3. Esperar el resultado exitoso.
 
-## 8. Mostrar despliegue en Vercel
+## 8. Mostrar despliegue en Render
 
 Si todavía no está conectado:
 
-1. Entrar a `https://vercel.com`.
+1. Entrar a `https://render.com`.
 2. Iniciar sesión con GitHub.
-3. Importar el repositorio.
-4. Seleccionar el proyecto.
-5. Framework: Vite.
+3. Crear un nuevo `Static Site` o un nuevo `Blueprint`.
+4. Seleccionar el repositorio `Gabrielz-DevOS/sistema-pedidos-restaurante-devops`.
+5. Rama: `main`.
 6. Build command: `npm run build`.
-7. Output directory: `dist`.
-8. Deploy.
-9. Copiar la URL generada.
+7. Publish directory: `dist`.
+8. Auto deploy: después de que pasen los checks de CI, si la opción está disponible.
+9. Deploy.
+10. Copiar la URL generada.
 
 Después del cambio pequeño:
 
 1. Hacer push a GitHub.
-2. Abrir Vercel.
+2. Abrir Render.
 3. Ver el nuevo despliegue automático.
 4. Abrir la URL pública y confirmar el cambio.
 

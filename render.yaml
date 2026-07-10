@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: sistema-pedidos-restaurante-devops
+    runtime: static
+    repo: https://github.com/Gabrielz-DevOS/sistema-pedidos-restaurante-devops.git
+    branch: main
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    autoDeployTrigger: checksPass
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

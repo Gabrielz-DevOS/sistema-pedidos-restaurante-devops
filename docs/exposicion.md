@@ -73,7 +73,7 @@ Qué debe decir:
 
 Qué debe mostrar:
 
-- Proyecto importado en Vercel.
+- Proyecto importado en Render.
 - Configuración de build: `npm run build`.
 - Output directory: `dist`.
 - URL pública funcionando.
@@ -81,11 +81,11 @@ Qué debe mostrar:
 
 Demostración práctica:
 
-1. Abrir la URL de Vercel.
+1. Abrir la URL de Render.
 2. Hacer un cambio pequeño en el texto del encabezado.
 3. Hacer commit y push.
 4. Mostrar GitHub Actions ejecutándose.
-5. Mostrar el nuevo despliegue en Vercel.
+5. Mostrar el nuevo despliegue en Render.
 
 ## Estudiante 5: Reutilización y variabilidad
 
