@@ -29,15 +29,28 @@ function App() {
     [orders, searchTerm, statusFilter],
   );
 
+  /**
+   * Registra un nuevo pedido en el estado, autogenerando el código correspondiente.
+   * @param {Object} orderData - Datos del pedido (cliente, mesa, items, total).
+   */
   function handleCreateOrder(orderData) {
     const newOrder = createOrder(orderData, nextOrderCode);
     setOrders((currentOrders) => [newOrder, ...currentOrders]);
   }
 
+  /**
+   * Maneja el cambio de estado de un pedido específico.
+   * @param {string} orderId - ID único del pedido.
+   * @param {string} newStatus - Nuevo estado del pedido.
+   */
   function handleStatusChange(orderId, newStatus) {
     setOrders((currentOrders) => updateOrderStatus(currentOrders, orderId, newStatus));
   }
 
+  /**
+   * Solicita confirmación y elimina un pedido del estado.
+   * @param {string} orderId - ID único del pedido a eliminar.
+   */
   function handleDeleteOrder(orderId) {
     const shouldDelete = window.confirm('¿Desea eliminar este pedido?');
     if (shouldDelete) {
@@ -45,10 +58,14 @@ function App() {
     }
   }
 
+  /**
+   * Limpia los filtros de búsqueda y estado aplicados a la lista de pedidos.
+   */
   function handleClearFilters() {
     setSearchTerm('');
     setStatusFilter(FILTER_ALL_STATUS);
   }
+
 
   return (
     <>
