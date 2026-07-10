@@ -146,11 +146,16 @@ export function removeOrder(orders, orderId) {
  * @returns {{totalOrders: number, totalSold: number, pendingOrders: number, deliveredOrders: number}}
  */
 export function getSalesSummary(orders) {
+  const totalProducts = orders.reduce((sum, order) => {
+    return sum + order.items.reduce((itemSum, item) => itemSum + item.quantity, 0);
+  }, 0);
+
   return {
     totalOrders: orders.length,
     totalSold: orders.reduce((total, order) => total + order.total, 0),
     pendingOrders: orders.filter((order) => order.status === ORDER_STATUS.pending).length,
     deliveredOrders: orders.filter((order) => order.status === ORDER_STATUS.delivered).length,
+    totalProducts,
   };
 }
 

@@ -15,6 +15,10 @@ function SalesSummary({ orders }) {
         <strong>{formatCurrency(summary.totalSold)}</strong>
       </article>
       <article>
+        <span>Productos vendidos</span>
+        <strong>{summary.totalProducts}</strong>
+      </article>
+      <article>
         <span>Pendientes</span>
         <strong>{summary.pendingOrders}</strong>
       </article>
