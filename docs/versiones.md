@@ -47,11 +47,28 @@ Esta versión permite demostrar cómo una solicitud de cambio se convierte en un
 
 ## Ramas recomendadas para mostrar
 
-- `main`: rama principal estable.
-- `develop`: rama de integración.
-- `feature/registro-pedidos`: rama asociada al registro básico.
-- `feature/busqueda-pedidos`: rama asociada a búsqueda y filtros.
-- `feature/resumen-ventas`: rama asociada al resumen de ventas.
+- `main`: rama principal estable. Solo recibe código revisado y aprobado.
+- `develop`: rama de integración. Aquí se acumulan los cambios antes de pasar a `main`.
+- `feature/registro-pedidos`: rama donde se desarrolló el registro de pedidos (CH-001 y CH-002).
+- `feature/busqueda-pedidos`: rama donde se desarrolló la búsqueda y filtros (CH-003 y CH-004).
+- `feature/resumen-ventas`: rama donde se desarrolló el resumen de ventas (CH-005).
+
+## Flujo de ramas de trabajo
+
+El proyecto siguió este flujo de integración:
+
+```
+feature/registro-pedidos  ──┐
+feature/busqueda-pedidos  ──┼──► develop ──► main
+feature/resumen-ventas    ──┘
+```
+
+Pasos del flujo:
+
+1. Se crea una rama `feature/*` a partir de `develop` para cada nuevo cambio solicitado.
+2. Se desarrolla e implementa el cambio dentro de la rama `feature/*`.
+3. Al completarse, la rama se fusiona hacia `develop` mediante un merge.
+4. Cuando `develop` contiene una versión estable y completa, se fusiona hacia `main` y se crea un tag de versión.
 
 ## Comandos útiles
 
