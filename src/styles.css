@@ -358,6 +358,13 @@ h3 {
   box-shadow: 0 0 14px var(--color-primary-focus);
 }
 
+/* Fix dropdown options visibility (prevent white-on-white text) */
+.order-actions select option,
+.filters select option {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
 
 .subheading {
   display: flex;
