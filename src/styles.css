@@ -736,39 +736,6 @@ button:disabled {
 }
 
 
-@media (max-width: 860px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .summary-panel {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .header-content,
-  .list-heading,
-  .order-card-header {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .product-row {
-    grid-template-columns: 1fr;
-  }
-
-  .product-row p {
-    text-align: left;
-  }
-
-  .order-meta,
-  .summary-panel,
-  .filters,
-  .order-actions {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* Sidebar */
 .sidebar {
@@ -795,6 +762,7 @@ button:disabled {
 
 .sidebar-logo svg {
   color: var(--color-primary);
+  flex-shrink: 0;
 }
 
 .sidebar-nav {
@@ -945,3 +913,321 @@ button:disabled {
   border: 1px dashed var(--color-border-light);
   border-radius: 8px;
 }
+
+@media (max-width: 860px) {
+
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kanban-board {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .kanban-column {
+    max-height: none;
+  }
+}
+
+/* ===== Mobile Menu Button ===== */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ===== Sidebar Close Button (mobile only) ===== */
+.sidebar-close-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  margin-left: auto;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+}
+
+/* ===== Sidebar Overlay Backdrop ===== */
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Show hamburger, hide sidebar on desktop */
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+  }
+
+  /* Sidebar becomes off-canvas overlay */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    box-shadow: none;
+    background: rgba(9, 13, 22, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .sidebar.sidebar--open {
+    transform: translateX(0);
+    box-shadow: 8px 0 40px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Dark overlay behind sidebar */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 999;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  /* Topbar adjustments */
+  .topbar {
+    height: 56px;
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  .topbar-left {
+    gap: 8px;
+  }
+
+  .topbar-title {
+    font-size: 0.95rem;
+  }
+
+  .topbar-badge {
+    display: none;
+  }
+
+  /* Compact the "Nuevo Pedido" button: icon only on very small screens */
+  .btn-primary {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Dashboard content */
+  .dashboard-content {
+    padding: 14px;
+    gap: 16px;
+  }
+
+  /* Summary panel: 2 columns */
+  .summary-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .summary-panel article {
+    padding: 12px;
+  }
+
+  .summary-panel strong {
+    font-size: 1.15rem;
+  }
+
+  .summary-panel span {
+    font-size: 0.72rem;
+  }
+
+  /* Filters stack */
+  .filters {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  /* Kanban board stacks */
+  .kanban-board {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .kanban-column-content {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  /* Order cards */
+  .order-card {
+    padding: 14px;
+  }
+
+  .order-card:hover {
+    transform: none;
+  }
+
+  .order-card-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .order-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .order-meta div {
+    padding: 8px;
+  }
+
+  .order-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Product rows */
+  .product-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .product-row p {
+    text-align: left;
+  }
+
+  /* Make counter controls more touch-friendly */
+  .counter-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .counter-value {
+    min-width: 24px;
+    font-size: 0.95rem;
+  }
+
+  /* Drawer full width on mobile */
+  .drawer-content {
+    max-width: 100%;
+  }
+
+  .drawer-header {
+    padding: 16px;
+  }
+
+  .drawer-body {
+    padding: 16px;
+  }
+
+  /* List heading */
+  .list-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  /* Header content */
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 400px) {
+  .topbar-title {
+    font-size: 0.85rem;
+  }
+
+  /* Hide button text, keep icon */
+  .btn-primary-label {
+    display: none;
+  }
+
+  .btn-primary {
+    padding: 8px 10px;
+  }
+
+  .summary-panel {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .dashboard-content {
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .order-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .kanban-column-header {
+    padding: 12px;
+  }
+
+  .kanban-column-content {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .order-card {
+    padding: 12px;
+  }
+
+  .filters {
+    padding: 10px;
+  }
+
+  .sidebar {
+    width: 260px;
+  }
+}
+
+/* Prevent body scroll when sidebar is open on mobile */
+@media (max-width: 768px) {
+  .sidebar-mobile-open {
+    overflow: hidden;
+  }
+}
+

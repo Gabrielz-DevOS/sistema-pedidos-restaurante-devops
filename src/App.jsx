@@ -22,6 +22,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState(FILTER_ALL_STATUS);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     saveOrders(orders);
@@ -85,10 +86,13 @@ function App() {
 
 
   return (
-    <div className="dashboard-layout">
-      <Sidebar />
+    <div className={`dashboard-layout ${isSidebarOpen ? 'sidebar-mobile-open' : ''}`}>
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="dashboard-main">
-        <Header onOpenNewOrder={() => setIsDrawerOpen(true)} />
+        <Header
+          onOpenNewOrder={() => setIsDrawerOpen(true)}
+          onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
+        />
         
         <main className="dashboard-content">
           <SalesSummary orders={orders} />
@@ -125,3 +129,4 @@ function App() {
 }
 
 export default App;
+
