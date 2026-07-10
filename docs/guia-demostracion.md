@@ -46,11 +46,27 @@ http://localhost:5173
 
 Demostración:
 
-1. Registrar un pedido.
-2. Seleccionar productos.
-3. Ver el total calculado automáticamente.
-4. Confirmar que el pedido aparece en la lista.
-5. Recargar la página y explicar que los datos se mantienen por LocalStorage.
+1. **Registrar un pedido con notas**:
+   - Ingresar el nombre del cliente y el número de mesa.
+   - En el campo **Notas / Instrucciones**, escribir un ejemplo como "Sin cebolla" o "Alergia al gluten".
+   - Seleccionar algunos productos en el menú.
+2. **Verificar el total y contador**:
+   - Confirmar que el total se calcula automáticamente.
+   - Guardar el pedido y observar que aparece en la lista con su tarjeta y la sección de notas destacada con una línea verde.
+3. **Observar la fecha y título dinámico**:
+   - Ver que la fecha del pedido se muestra de forma amigable (ej. "Hace un momento").
+   - Mirar la pestaña del navegador para ver el título dinámico (ej. `(1) Pedidos Pendientes - Restaurante`).
+4. **Verificar el contador de productos**:
+   - En el panel superior (Resumen de ventas), verificar que el contador **Productos vendidos** sumó las cantidades de los productos en tiempo real.
+5. **Probar el filtro y botón de limpieza**:
+   - Escribir en el buscador. El botón **Limpiar filtros** se habilitará automáticamente.
+   - Hacer clic en "Limpiar filtros" para restablecer la vista.
+6. **Manejar transiciones de estado**:
+   - Cambiar el estado del pedido y ver cómo el punto de color del badge (verde, naranja, amarillo) se actualiza de inmediato.
+7. **Eliminar con confirmación**:
+   - Hacer clic en "Eliminar" y confirmar que el cuadro de diálogo de advertencia ahora muestra los datos detallados: `¿Está seguro que desea eliminar el pedido PED-XXX de [Cliente]?`.
+8. **Persistencia**:
+   - Recargar la página y explicar que todos los datos y notas se mantienen intactos por LocalStorage.
 
 ## 4. Mostrar archivos principales
 
