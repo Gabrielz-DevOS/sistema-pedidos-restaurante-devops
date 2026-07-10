@@ -4,14 +4,11 @@ import Sidebar from './components/Sidebar.jsx';
 import Drawer from './components/Drawer.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import OrderList from './components/OrderList.jsx';
-import OrderFilters from './components/OrderFilters.jsx';
 import SalesSummary from './components/SalesSummary.jsx';
 import { getOrders, saveOrders } from './utils/storage.js';
 import {
-  FILTER_ALL_STATUS,
   ORDER_STATUS,
   createOrder,
-  filterOrders,
   generateOrderCode,
   removeOrder,
   updateOrderStatus,
@@ -19,7 +16,6 @@ import {
 
 function App() {
   const [orders, setOrders] = useState(() => getOrders());
-  const [statusFilter, setStatusFilter] = useState(FILTER_ALL_STATUS);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -37,10 +33,6 @@ function App() {
   }, [orders]);
 
   const nextOrderCode = useMemo(() => generateOrderCode(orders), [orders]);
-  const filteredOrders = useMemo(
-    () => filterOrders(orders, { statusFilter }),
-    [orders, statusFilter],
-  );
 
   /**
    * Registra un nuevo pedido en el estado, autogenerando el código correspondiente.
@@ -75,14 +67,6 @@ function App() {
   }
 
 
-  /**
-   * Limpia los filtros de búsqueda y estado aplicados a la lista de pedidos.
-   */
-  function handleClearFilters() {
-    setStatusFilter(FILTER_ALL_STATUS);
-  }
-
-
   return (
     <div className={`dashboard-layout ${isSidebarOpen ? 'sidebar-mobile-open' : ''}`}>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
@@ -96,16 +80,8 @@ function App() {
           <SalesSummary orders={orders} />
 
           <section className="kanban-section" aria-labelledby="order-list-title">
-            <div className="kanban-header">
-              <OrderFilters
-                statusFilter={statusFilter}
-                onStatusChange={setStatusFilter}
-                onClearFilters={handleClearFilters}
-              />
-            </div>
-
             <OrderList
-              orders={filteredOrders}
+              orders={orders}
               onStatusChange={handleStatusChange}
               onDeleteOrder={handleDeleteOrder}
             />

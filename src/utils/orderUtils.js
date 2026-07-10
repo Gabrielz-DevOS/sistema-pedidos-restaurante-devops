@@ -1,5 +1,5 @@
-export { ORDER_STATUS, ORDER_STATUS_OPTIONS, FILTER_ALL_STATUS } from '../constants/orderStatus.js';
-import { ORDER_STATUS, FILTER_ALL_STATUS } from '../constants/orderStatus.js';
+export { ORDER_STATUS, ORDER_STATUS_OPTIONS } from '../constants/orderStatus.js';
+import { ORDER_STATUS } from '../constants/orderStatus.js';
 
 /**
  * Calcula el total monetario de un pedido sumando precio × cantidad de cada ítem.
@@ -85,25 +85,7 @@ export function generateOrderCode(orders) {
   return `PED-${String(nextNumber).padStart(3, '0')}`;
 }
 
-/**
- * Verifica si el pedido tiene el estado seleccionado en el filtro (o si el filtro es "Todos").
- * @param {Object} order - Pedido a evaluar.
- * @param {string} statusFilter - Estado seleccionado en el filtro.
- * @returns {boolean}
- */
-function matchesStatus(order, statusFilter) {
-  return statusFilter === FILTER_ALL_STATUS || order.status === statusFilter;
-}
 
-/**
- * Filtra la lista de pedidos por estado.
- * @param {Array} orders - Lista completa de pedidos.
- * @param {{statusFilter: string}} filters - Criterios de filtro.
- * @returns {Array} Pedidos que cumplen el criterio.
- */
-export function filterOrders(orders, filters) {
-  return orders.filter((order) => matchesStatus(order, filters.statusFilter));
-}
 
 
 /**
