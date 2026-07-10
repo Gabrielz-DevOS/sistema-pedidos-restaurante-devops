@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import ProductSelector from './ProductSelector.jsx';
 import { menuItems } from '../data/menu.js';
 import { calculateOrderTotal, formatCurrency, validateOrder } from '../utils/orderUtils.js';
@@ -103,5 +104,10 @@ function OrderForm({ nextOrderCode, onCreateOrder }) {
     </form>
   );
 }
+
+OrderForm.propTypes = {
+  nextOrderCode: PropTypes.string.isRequired,
+  onCreateOrder: PropTypes.func.isRequired,
+};
 
 export default OrderForm;
