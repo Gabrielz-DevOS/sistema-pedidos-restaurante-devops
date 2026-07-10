@@ -34,6 +34,12 @@ function OrderCard({ order, onStatusChange, onDeleteOrder }) {
         ))}
       </ul>
 
+      {order.notes && (
+        <div className="order-notes-display">
+          <strong>Notas:</strong> <span>{order.notes}</span>
+        </div>
+      )}
+
       <div className="order-total">
         <span>Total</span>
         <strong>{formatCurrency(order.total)}</strong>
@@ -64,6 +70,7 @@ OrderCard.propTypes = {
     code: PropTypes.string.isRequired,
     customerName: PropTypes.string.isRequired,
     tableNumber: PropTypes.string,
+    notes: PropTypes.string,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,

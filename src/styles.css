@@ -171,6 +171,7 @@ h3 {
 }
 
 .form-row input,
+.form-row textarea,
 .product-row input,
 .order-actions select,
 .filters input,
@@ -181,9 +182,12 @@ h3 {
   background: var(--color-panel-bg);
   color: var(--color-text);
   padding: 10px 11px;
+  font-family: inherit;
+  resize: vertical;
 }
 
 .form-row input:focus,
+.form-row textarea:focus,
 .product-row input:focus,
 .order-actions select:focus,
 .filters input:focus,
@@ -191,6 +195,7 @@ h3 {
   border-color: var(--color-primary);
   outline: 2px solid var(--color-primary-focus);
 }
+
 
 .subheading {
   display: flex;
@@ -411,6 +416,21 @@ h3 {
   justify-content: space-between;
   gap: 10px;
 }
+
+.order-notes-display {
+  background: var(--color-bg);
+  padding: 8px 10px;
+  border-radius: 4px;
+  margin: 0 0 14px;
+  font-size: 0.88rem;
+  border-left: 3px solid var(--color-primary);
+}
+
+.order-notes-display strong {
+  margin-right: 4px;
+  color: var(--color-text-dark);
+}
+
 
 .order-actions {
   display: grid;

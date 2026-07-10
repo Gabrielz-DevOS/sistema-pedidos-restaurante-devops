@@ -65,10 +65,12 @@ export function createOrder(orderData, code) {
     tableNumber: orderData.tableNumber.trim(),
     items: orderData.items,
     total: orderData.total,
+    notes: orderData.notes?.trim() || '',
     status: ORDER_STATUS.pending,
     createdAt: new Date().toISOString(),
   };
 }
+
 
 /**
  * Genera el próximo código de pedido en formato "PED-XXX".

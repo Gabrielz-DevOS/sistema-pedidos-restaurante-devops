@@ -12,6 +12,7 @@ const initialQuantities = menuItems.reduce((accumulator, product) => {
 function OrderForm({ nextOrderCode, onCreateOrder }) {
   const [customerName, setCustomerName] = useState('');
   const [tableNumber, setTableNumber] = useState('');
+  const [notes, setNotes] = useState('');
   const [quantities, setQuantities] = useState(initialQuantities);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -38,6 +39,7 @@ function OrderForm({ nextOrderCode, onCreateOrder }) {
   function resetForm() {
     setCustomerName('');
     setTableNumber('');
+    setNotes('');
     setQuantities(initialQuantities);
     setErrorMessage('');
   }
@@ -56,6 +58,7 @@ function OrderForm({ nextOrderCode, onCreateOrder }) {
       tableNumber,
       items: selectedItems,
       total: orderTotal,
+      notes,
     });
     resetForm();
   }
@@ -86,6 +89,17 @@ function OrderForm({ nextOrderCode, onCreateOrder }) {
           value={tableNumber}
           onChange={(event) => setTableNumber(event.target.value)}
           placeholder="Ej. 4"
+        />
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="order-notes">Notas / Instrucciones</label>
+        <textarea
+          id="order-notes"
+          value={notes}
+          onChange={(event) => setNotes(event.target.value)}
+          placeholder="Ej. Sin cebolla, extra picante, etc."
+          rows="2"
         />
       </div>
 
