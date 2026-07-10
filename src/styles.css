@@ -3,24 +3,28 @@
 }
 
 :root {
-  --color-text: #222222;
-  --color-text-muted: #6a717d;
-  --color-text-dark: #3f4651;
-  --color-bg: #f4f5f7;
-  --color-panel-bg: #ffffff;
-  --color-border: #d9dee5;
-  --color-border-light: #e2e6eb;
-  --color-border-badge: #cbd3dc;
-  --color-primary: #4b7f52;
-  --color-primary-focus: #dcebdd;
-  --color-primary-hover: #3e6a43;
-  --color-danger: #d9383a;
-  --color-danger-focus: #fbebeb;
-  --color-danger-hover: #b52c2e;
+  --color-text: #f3f4f6;
+  --color-text-muted: #9ca3af;
+  --color-text-dark: #f9fafb;
+  --color-bg: #090d16;
+  --color-panel-bg: rgba(17, 24, 39, 0.7);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-badge: rgba(255, 255, 255, 0.15);
+  --color-primary: #10b981;
+  --color-primary-focus: rgba(16, 185, 129, 0.25);
+  --color-primary-hover: #059669;
+  --color-danger: #ef4444;
+  --color-danger-focus: rgba(239, 68, 68, 0.2);
+  --color-danger-hover: #dc2626;
+
+  --glass-blur: blur(12px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --neon-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
 
   color: var(--color-text);
   background: var(--color-bg);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   font-synthesis: none;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
