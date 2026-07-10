@@ -1,22 +1,11 @@
 import PropTypes from 'prop-types';
 import { FILTER_ALL_STATUS, ORDER_STATUS_OPTIONS } from '../utils/orderUtils.js';
 
-function OrderFilters({ searchTerm, statusFilter, onSearchChange, onStatusChange, onClearFilters }) {
-  const isClean = !searchTerm.trim() && statusFilter === FILTER_ALL_STATUS;
+function OrderFilters({ statusFilter, onStatusChange, onClearFilters }) {
+  const isClean = statusFilter === FILTER_ALL_STATUS;
 
   return (
     <div className="filters" aria-label="Filtros de pedidos">
-      <div className="filter-field">
-        <label htmlFor="search-order">Buscar cliente</label>
-        <input
-          id="search-order"
-          type="search"
-          value={searchTerm}
-          onChange={(event) => onSearchChange(event.target.value)}
-          placeholder="Ej. Andrea"
-        />
-      </div>
-
       <div className="filter-field">
         <label htmlFor="status-filter">Estado</label>
         <select id="status-filter" value={statusFilter} onChange={(event) => onStatusChange(event.target.value)}>
@@ -42,9 +31,7 @@ function OrderFilters({ searchTerm, statusFilter, onSearchChange, onStatusChange
 }
 
 OrderFilters.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
   statusFilter: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func.isRequired,
   onStatusChange: PropTypes.func.isRequired,
   onClearFilters: PropTypes.func.isRequired,
 };

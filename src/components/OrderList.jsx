@@ -1,8 +1,39 @@
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import OrderCard from './OrderCard.jsx';
 import { ORDER_STATUS } from '../constants/orderStatus.js';
 
+const STATUSES = [
+  { key: ORDER_STATUS.pending, label: 'Pendiente', countClass: 'count-pending' },
+  { key: ORDER_STATUS.preparing, label: 'Preparando', countClass: 'count-preparing' },
+  { key: ORDER_STATUS.delivered, label: 'Entregado', countClass: 'count-delivered' },
+];
+
 function OrderList({ orders, onStatusChange, onDeleteOrder }) {
+  // On mobile, only "pending" is expanded by default
+  const [expandedColumns, setExpandedColumns] = useState({
+    [ORDER_STATUS.pending]: true,
+    [ORDER_STATUS.preparing]: false,
+    [ORDER_STATUS.delivered]: false,
+  });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 768px)');
+    const handleChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mql.matches);
+    mql.addEventListener('change', handleChange);
+    return () => mql.removeEventListener('change', handleChange);
+  }, []);
+
+  const toggleColumn = useCallback((statusKey) => {
+    if (!isMobile) return;
+    setExpandedColumns((prev) => ({
+      ...prev,
+      [statusKey]: !prev[statusKey],
+    }));
+  }, [isMobile]);
+
   if (orders.length === 0) {
     return (
       <div className="empty-state">
@@ -28,38 +59,60 @@ function OrderList({ orders, onStatusChange, onDeleteOrder }) {
     );
   }
 
-  const STATUSES = [
-    { key: ORDER_STATUS.pending, label: 'Pendiente', countClass: 'count-pending' },
-    { key: ORDER_STATUS.preparing, label: 'Preparando', countClass: 'count-preparing' },
-    { key: ORDER_STATUS.delivered, label: 'Entregado', countClass: 'count-delivered' },
-  ];
-
   return (
     <div className="kanban-board">
       {STATUSES.map((statusObj) => {
         const columnOrders = orders.filter((o) => o.status === statusObj.key);
+        const isExpanded = !isMobile || expandedColumns[statusObj.key];
+
         return (
-          <div className="kanban-column" key={statusObj.key}>
-            <div className="kanban-column-header">
+          <div
+            className={`kanban-column ${isExpanded ? 'kanban-column--expanded' : 'kanban-column--collapsed'}`}
+            key={statusObj.key}
+          >
+            <button
+              type="button"
+              className="kanban-column-header"
+              onClick={() => toggleColumn(statusObj.key)}
+              aria-expanded={isExpanded}
+            >
               <h3>{statusObj.label}</h3>
-              <span className={`kanban-count ${statusObj.countClass}`}>
-                {columnOrders.length}
-              </span>
-            </div>
-            <div className="kanban-column-content">
-              {columnOrders.length === 0 ? (
-                <div className="kanban-empty">Sin pedidos</div>
-              ) : (
-                columnOrders.map((order) => (
-                  <OrderCard
-                    key={order.id}
-                    order={order}
-                    onStatusChange={onStatusChange}
-                    onDeleteOrder={onDeleteOrder}
-                  />
-                ))
-              )}
-            </div>
+              <div className="kanban-header-right">
+                <span className={`kanban-count ${statusObj.countClass}`}>
+                  {columnOrders.length}
+                </span>
+                <svg
+                  className="kanban-chevron"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </button>
+            {isExpanded && (
+              <div className="kanban-column-content">
+                {columnOrders.length === 0 ? (
+                  <div className="kanban-empty">Sin pedidos</div>
+                ) : (
+                  columnOrders.map((order) => (
+                    <OrderCard
+                      key={order.id}
+                      order={order}
+                      onStatusChange={onStatusChange}
+                      onDeleteOrder={onDeleteOrder}
+                    />
+                  ))
+                )}
+              </div>
+            )}
           </div>
         );
       })}
@@ -74,3 +127,4 @@ OrderList.propTypes = {
 };
 
 export default OrderList;
+

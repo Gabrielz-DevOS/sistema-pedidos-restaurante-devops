@@ -86,16 +86,6 @@ export function generateOrderCode(orders) {
 }
 
 /**
- * Verifica si el nombre del cliente contiene el término de búsqueda.
- * @param {Object} order - Pedido a evaluar.
- * @param {string} normalizedSearch - Término de búsqueda ya normalizado (lowercase, sin espacios extremos).
- * @returns {boolean}
- */
-function matchesCustomer(order, normalizedSearch) {
-  return order.customerName.toLowerCase().includes(normalizedSearch);
-}
-
-/**
  * Verifica si el pedido tiene el estado seleccionado en el filtro (o si el filtro es "Todos").
  * @param {Object} order - Pedido a evaluar.
  * @param {string} statusFilter - Estado seleccionado en el filtro.
@@ -106,16 +96,13 @@ function matchesStatus(order, statusFilter) {
 }
 
 /**
- * Filtra la lista de pedidos por nombre de cliente y/o estado.
+ * Filtra la lista de pedidos por estado.
  * @param {Array} orders - Lista completa de pedidos.
- * @param {{searchTerm: string, statusFilter: string}} filters - Criterios de filtro.
- * @returns {Array} Pedidos que cumplen ambos criterios.
+ * @param {{statusFilter: string}} filters - Criterios de filtro.
+ * @returns {Array} Pedidos que cumplen el criterio.
  */
 export function filterOrders(orders, filters) {
-  const normalizedSearch = filters.searchTerm.trim().toLowerCase();
-  return orders.filter(
-    (order) => matchesCustomer(order, normalizedSearch) && matchesStatus(order, filters.statusFilter),
-  );
+  return orders.filter((order) => matchesStatus(order, filters.statusFilter));
 }
 
 

@@ -19,7 +19,6 @@ import {
 
 function App() {
   const [orders, setOrders] = useState(() => getOrders());
-  const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState(FILTER_ALL_STATUS);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -39,8 +38,8 @@ function App() {
 
   const nextOrderCode = useMemo(() => generateOrderCode(orders), [orders]);
   const filteredOrders = useMemo(
-    () => filterOrders(orders, { searchTerm, statusFilter }),
-    [orders, searchTerm, statusFilter],
+    () => filterOrders(orders, { statusFilter }),
+    [orders, statusFilter],
   );
 
   /**
@@ -80,7 +79,6 @@ function App() {
    * Limpia los filtros de búsqueda y estado aplicados a la lista de pedidos.
    */
   function handleClearFilters() {
-    setSearchTerm('');
     setStatusFilter(FILTER_ALL_STATUS);
   }
 
@@ -100,9 +98,7 @@ function App() {
           <section className="kanban-section" aria-labelledby="order-list-title">
             <div className="kanban-header">
               <OrderFilters
-                searchTerm={searchTerm}
                 statusFilter={statusFilter}
-                onSearchChange={setSearchTerm}
                 onStatusChange={setStatusFilter}
                 onClearFilters={handleClearFilters}
               />
