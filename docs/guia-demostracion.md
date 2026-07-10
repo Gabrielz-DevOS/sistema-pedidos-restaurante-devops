@@ -2,6 +2,20 @@
 
 Esta guía indica los pasos para demostrar el proyecto frente al docente.
 
+## Checklist de verificación previa a la exposición
+
+Completar esta lista antes de comenzar la presentación:
+
+- [ ] El repositorio está clonado en la computadora que se usará para exponer.
+- [ ] Se ejecutó `npm install` y no hubo errores.
+- [ ] Se ejecutó `npm run dev` y la aplicación abre en `http://localhost:5173`.
+- [ ] Se ejecutó `npm run build` y el directorio `dist/` fue generado correctamente.
+- [ ] Se verificó que GitHub Actions muestra una ejecución exitosa reciente.
+- [ ] La URL de Render está abierta en el navegador y la aplicación carga correctamente.
+- [ ] El archivo `docs/control-cambios.md` está abierto en VS Code listo para mostrar.
+- [ ] Se tiene acceso a GitHub en el navegador con el repositorio visible.
+- [ ] Se ensayó la demostración completa al menos una vez el día anterior.
+
 ## 1. Abrir el proyecto
 
 1. Abrir Visual Studio Code.
