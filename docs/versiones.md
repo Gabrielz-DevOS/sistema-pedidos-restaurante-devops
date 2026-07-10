@@ -30,6 +30,21 @@ Incluye todo lo de `v1.0` más:
 
 Esta versión permite demostrar cómo una solicitud de cambio se convierte en una nueva versión funcional del sistema.
 
+## Comparación funcional v1.0 vs v2.0
+
+| Funcionalidad | v1.0 | v2.0 |
+|---|---|---|
+| Registrar pedidos | ✅ | ✅ |
+| Listar pedidos | ✅ | ✅ |
+| Seleccionar productos del menú | ✅ | ✅ |
+| Cálculo automático del total | ✅ | ✅ |
+| Persistencia con LocalStorage | ✅ | ✅ |
+| Búsqueda de pedidos por cliente | ❌ | ✅ |
+| Filtro de pedidos por estado | ❌ | ✅ |
+| Cambio de estado del pedido | ❌ | ✅ |
+| Eliminación de pedidos | ❌ | ✅ |
+| Resumen de ventas | ❌ | ✅ |
+
 ## Ramas recomendadas para mostrar
 
 - `main`: rama principal estable.
