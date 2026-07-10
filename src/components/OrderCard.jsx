@@ -56,7 +56,7 @@ function OrderCard({ order, onStatusChange, onDeleteOrder }) {
             ))}
           </select>
         </label>
-        <button className="secondary-button danger-button" type="button" onClick={() => onDeleteOrder(order.id)}>
+        <button className="secondary-button danger-button" type="button" onClick={() => onDeleteOrder(order)}>
           Eliminar
         </button>
       </div>

@@ -49,14 +49,17 @@ function App() {
 
   /**
    * Solicita confirmación y elimina un pedido del estado.
-   * @param {string} orderId - ID único del pedido a eliminar.
+   * @param {Object} order - Pedido completo a eliminar.
    */
-  function handleDeleteOrder(orderId) {
-    const shouldDelete = window.confirm('¿Desea eliminar este pedido?');
+  function handleDeleteOrder(order) {
+    const shouldDelete = window.confirm(
+      `¿Está seguro que desea eliminar el pedido ${order.code} de ${order.customerName}?`
+    );
     if (shouldDelete) {
-      setOrders((currentOrders) => removeOrder(currentOrders, orderId));
+      setOrders((currentOrders) => removeOrder(currentOrders, order.id));
     }
   }
+
 
   /**
    * Limpia los filtros de búsqueda y estado aplicados a la lista de pedidos.
