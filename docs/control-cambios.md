@@ -23,6 +23,14 @@ Este cambio fue el punto de partida del sistema. Se implementó un formulario qu
 - Función `validateOrder()` en `src/utils/orderUtils.js`: valida que el pedido tenga nombre y al menos un producto antes de guardarlo.
 - Función `saveOrders()` en `src/utils/storage.js`: persiste los pedidos en LocalStorage para que sobrevivan a recargas del navegador.
 
+### CH-002: Agregar cálculo automático del total
+
+Este cambio eliminó la necesidad de calcular manualmente el costo de cada pedido. Cada vez que el cliente selecciona o quita un producto, el total se recalcula de forma inmediata. Técnicamente se implementó con:
+
+- Función `calculateOrderTotal(products)` en `src/utils/orderUtils.js`: recibe el arreglo de productos del pedido y retorna la suma de `precio × cantidad` de cada ítem.
+- Integración en `OrderForm.jsx`: el total se calcula en tiempo real dentro del estado del componente y se muestra antes de confirmar el pedido.
+- Integración en `OrderCard.jsx`: el total también se muestra en la tarjeta de cada pedido ya registrado.
+
 ## Ejemplo explicado
 
 El cliente pidió agregar búsqueda de pedidos porque, al aumentar la cantidad de pedidos registrados, era difícil encontrar rápidamente los pedidos de un cliente específico. El cambio quedó registrado como `CH-003`, fue aprobado el 10/07/2026 y se implementó en la versión `v2.0`.
