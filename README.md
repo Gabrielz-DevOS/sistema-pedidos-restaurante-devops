@@ -187,11 +187,13 @@ Estas piezas podrían reutilizarse en sistemas simples de cafetería, tiendas pe
 
 ## Integrantes y partes de exposición
 
-- Integrante 1: Gestión del cambio.
-- Integrante 2: Gestión de versiones.
-- Integrante 3: Construcción e integración continua.
-- Integrante 4: Despliegue continuo.
-- Integrante 5: Reutilización de software y variabilidad.
+| # | Integrante | Parte asignada | Tema |
+|---|---|---|---|
+| 1 | Integrante 1 | Estudiante 1 | Gestión del cambio |
+| 2 | Integrante 2 | Estudiante 2 | Gestión de versiones |
+| 3 | Integrante 3 | Estudiante 3 | Construcción e integración continua |
+| 4 | Integrante 4 | Estudiante 4 | Despliegue continuo |
+| 5 | Integrante 5 | Estudiante 5 | Reutilización de software y variabilidad |
 
 ## Documentos académicos
 
