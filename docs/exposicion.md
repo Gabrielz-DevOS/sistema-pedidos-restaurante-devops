@@ -22,6 +22,13 @@ Demostración práctica:
 4. Registrar un pedido con un cliente.
 5. Buscar ese pedido por nombre.
 
+Tips de presentación:
+
+- Apuntar con el cursor a la columna **Código** de la tabla y explicar que cada cambio tiene un identificador único, igual que en un sistema de tickets profesional.
+- Si la aplicación no carga, abrir el archivo `docs/control-cambios.md` directamente en VS Code y explicar desde ahí.
+- Hablar despacio al leer la tabla; el docente necesita ver que entiendes cada columna, no solo leerla.
+- Mencionar que el proceso de registrar un cambio antes de implementarlo evita errores y facilita el trabajo en equipo.
+
 ## Estudiante 2: Gestión de versiones
 
 Qué debe decir:
