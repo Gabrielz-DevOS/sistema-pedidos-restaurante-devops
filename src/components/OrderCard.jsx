@@ -9,7 +9,10 @@ function OrderCard({ order, onStatusChange, onDeleteOrder }) {
           <h3>{order.code}</h3>
           <p>{order.customerName}</p>
         </div>
-        <span className={`status-badge ${getStatusClass(order.status)}`}>{order.status}</span>
+        <span className={`status-badge ${getStatusClass(order.status)}`}>
+          <span className="status-dot"></span>
+          {order.status}
+        </span>
       </div>
 
       <dl className="order-meta">
