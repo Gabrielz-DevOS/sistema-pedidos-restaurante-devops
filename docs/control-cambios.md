@@ -31,15 +31,13 @@ Este cambio eliminó la necesidad de calcular manualmente el costo de cada pedid
 - Integración en `OrderForm.jsx`: el total se calcula en tiempo real dentro del estado del componente y se muestra antes de confirmar el pedido.
 - Integración en `OrderCard.jsx`: el total también se muestra en la tarjeta de cada pedido ya registrado.
 
-## Ejemplo explicado
+### CH-003: Agregar búsqueda de pedidos
 
-El cliente pidió agregar búsqueda de pedidos porque, al aumentar la cantidad de pedidos registrados, era difícil encontrar rápidamente los pedidos de un cliente específico. El cambio quedó registrado como `CH-003`, fue aprobado el 10/07/2026 y se implementó en la versión `v2.0`.
+Este cambio resolvió un problema de usabilidad: a medida que el restaurante acumulaba pedidos, encontrar uno específico requería revisar toda la lista manualmente. La búsqueda filtra en tiempo real mientras el usuario escribe. Técnicamente se implementó con:
 
-En la aplicación, este cambio se ve en el campo `Buscar cliente`, ubicado sobre la lista de pedidos. Técnicamente se implementó con:
-
-- Componente `OrderFilters.jsx`.
-- Función reutilizable `filterOrders()` en `src/utils/orderUtils.js`.
-- Estado `searchTerm` en `src/App.jsx`.
+- Componente `OrderFilters.jsx`: contiene el campo de texto de búsqueda y el selector de estado. Emite los valores de filtro hacia el componente padre mediante props.
+- Función reutilizable `filterOrders(orders, searchTerm, statusFilter)` en `src/utils/orderUtils.js`: aplica ambos filtros (nombre de cliente y estado) sobre el arreglo de pedidos y retorna el subconjunto que cumple las condiciones.
+- Estado `searchTerm` en `src/App.jsx`: almacena el término de búsqueda ingresado por el usuario y lo pasa como prop a `filterOrders()`.
 
 ## Relación entre cambios, commits y versiones
 
