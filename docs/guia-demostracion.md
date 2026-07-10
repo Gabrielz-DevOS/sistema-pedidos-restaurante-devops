@@ -189,3 +189,35 @@ Mostrar:
 Explicación:
 
 "La variabilidad se demuestra porque el mismo sistema tiene una versión básica y una avanzada. La versión básica permite registrar y listar pedidos. La versión avanzada agrega búsqueda, filtros, estados, eliminación y resumen."
+
+## Errores comunes y soluciones
+
+### Error 1: El puerto 5173 ya está en uso
+
+Síntoma: Vite muestra `Port 5173 is in use`.
+
+Solución: Ejecutar `npm run dev -- --port 5174` para usar un puerto diferente, o cerrar el proceso que está usando el puerto con el administrador de tareas.
+
+### Error 2: `npm install` falla por permisos
+
+Síntoma: Error `EACCES` o `EPERM` al instalar dependencias.
+
+Solución: Abrir la terminal como administrador (en Windows, clic derecho sobre el ícono → "Ejecutar como administrador") y repetir el comando.
+
+### Error 3: `npm run build` falla con error de importación
+
+Síntoma: El build muestra `Failed to resolve import`.
+
+Solución: Verificar que todos los archivos referenciados en los imports existen con el nombre exacto (incluyendo mayúsculas y extensión). React y Vite son sensibles a las mayúsculas en los nombres de archivo.
+
+### Error 4: La aplicación abre pero no muestra nada
+
+Síntoma: El navegador carga la URL pero la pantalla queda en blanco.
+
+Solución: Abrir la consola del navegador (F12 → Console). Leer el error que aparece. Generalmente es un componente que no exporta correctamente o un prop que llega como `undefined`.
+
+### Error 5: Los pedidos desaparecen al recargar
+
+Síntoma: Los pedidos registrados se pierden al cerrar o recargar la página.
+
+Solución: Verificar que las funciones `saveOrders()` y `getOrders()` en `src/utils/storage.js` funcionan correctamente. Abrir la consola del navegador y escribir `localStorage.getItem('orders')` para ver si los datos están almacenados.
