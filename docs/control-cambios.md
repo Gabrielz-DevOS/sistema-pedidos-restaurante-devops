@@ -47,6 +47,14 @@ Este cambio introdujo el ciclo de vida de cada pedido dentro del restaurante. An
 - Función `updateOrderStatus(orders, orderId, newStatus)` en `src/utils/orderUtils.js`: busca el pedido por su ID dentro del arreglo, actualiza su propiedad `status` y retorna el arreglo actualizado.
 - Estado `orders` en `src/App.jsx`: se actualiza con el resultado de `updateOrderStatus()` y se persiste con `saveOrders()`.
 
+### CH-005: Agregar resumen de ventas
+
+Este cambio incorporó una vista panorámica del negocio. En lugar de revisar pedido por pedido, el administrador puede ver de un vistazo cuántos pedidos existen, cuánto dinero se ha generado y cuántos pedidos están pendientes o entregados. Técnicamente se implementó con:
+
+- Componente `SalesSummary.jsx`: recibe el arreglo completo de pedidos y calcula cuatro métricas: total de pedidos, total vendido en dinero, pedidos pendientes y pedidos entregados. Muestra cada métrica en una tarjeta visual independiente.
+- Las métricas se calculan directamente dentro del componente usando métodos de arreglo (`filter`, `reduce`) sobre los pedidos recibidos por props.
+- El componente se renderiza en `src/App.jsx` por encima de la lista de pedidos para que sea siempre visible.
+
 ## Relación entre cambios, commits y versiones
 
 | Cambio | Implementación | Versión relacionada | Evidencia para mostrar |
