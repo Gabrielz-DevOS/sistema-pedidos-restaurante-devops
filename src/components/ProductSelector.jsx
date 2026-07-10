@@ -18,14 +18,25 @@ function ProductSelector({ quantities, onQuantityChange }) {
               <span>{product.category}</span>
             </div>
             <p>{formatCurrency(product.price)}</p>
-            <input
-              aria-label={`Cantidad de ${product.name}`}
-              min="0"
-              max="20"
-              type="number"
-              value={quantities[product.id] || 0}
-              onChange={(event) => onQuantityChange(product.id, Number(event.target.value))}
-            />
+            <div className="counter-controls">
+              <button
+                type="button"
+                className="counter-btn"
+                onClick={() => onQuantityChange(product.id, Math.max(0, (quantities[product.id] || 0) - 1))}
+                aria-label={`Disminuir cantidad de ${product.name}`}
+              >
+                -
+              </button>
+              <span className="counter-value">{quantities[product.id] || 0}</span>
+              <button
+                type="button"
+                className="counter-btn"
+                onClick={() => onQuantityChange(product.id, Math.min(20, (quantities[product.id] || 0) + 1))}
+                aria-label={`Aumentar cantidad de ${product.name}`}
+              >
+                +
+              </button>
+            </div>
           </div>
         ))}
       </div>
