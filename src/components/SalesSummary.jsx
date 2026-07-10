@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { formatCurrency, getSalesSummary } from '../utils/orderUtils.js';
 
 function SalesSummary({ orders }) {
@@ -24,5 +25,9 @@ function SalesSummary({ orders }) {
     </section>
   );
 }
+
+SalesSummary.propTypes = {
+  orders: PropTypes.array.isRequired,
+};
 
 export default SalesSummary;
