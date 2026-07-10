@@ -137,12 +137,20 @@ Después de subir el repositorio a GitHub, abrir:
 https://github.com/Gabrielz-DevOS/sistema-pedidos-restaurante-devops/compare/v1.0...v2.0
 ```
 
-En esa pantalla se puede mostrar:
+### Pasos para navegar la comparación
 
-- Archivos modificados.
-- Componentes agregados.
-- Funciones nuevas.
-- Diferencia entre versión básica y versión avanzada.
+1. Abrir el enlace en el navegador.
+2. En la parte superior se muestra el resumen: cuántos commits, archivos y líneas cambiaron.
+3. Hacer clic en la pestaña **Files changed** para ver las diferencias línea por línea.
+4. Las líneas en **verde** son código agregado; las líneas en **rojo** son código eliminado.
+5. Identificar los componentes nuevos: `OrderFilters.jsx`, `SalesSummary.jsx`, y los cambios en `App.jsx`.
+
+### Qué destacar durante la exposición
+
+- Mostrar que `v1.0` tenía menos archivos y `v2.0` incorporó componentes adicionales.
+- Señalar la función `filterOrders()` como evidencia técnica de CH-003.
+- Señalar el componente `SalesSummary` como evidencia técnica de CH-005.
+- Mostrar que el cambio en `App.jsx` refleja la integración de todos los nuevos componentes.
 
 ## Explicación para la exposición
 
