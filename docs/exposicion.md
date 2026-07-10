@@ -120,3 +120,35 @@ Demostración práctica:
 2. Abrir `src/utils/orderUtils.js` y explicar `calculateOrderTotal()` y `filterOrders()`.
 3. Mostrar `v1.0` como versión básica.
 4. Mostrar `v2.0` como versión avanzada.
+
+## Preguntas frecuentes del docente
+
+A continuación se listan preguntas que el docente podría hacer durante la exposición, con respuestas modelo para cada integrante.
+
+**¿Por qué usan Git en lugar de compartir archivos por correo?**
+
+Git registra cada cambio con autor, fecha y descripción. Si algo sale mal, se puede regresar a cualquier versión anterior sin perder trabajo. Compartir por correo no tiene ese control.
+
+**¿Qué pasa si dos personas cambian el mismo archivo al mismo tiempo?**
+
+Git detecta el conflicto y avisa. El equipo debe resolverlo manualmente decidiendo cuál versión conservar. En este proyecto lo evitamos trabajando en ramas separadas.
+
+**¿Por qué el proyecto usa LocalStorage en lugar de una base de datos?**
+
+Es una aplicación académica enfocada en demostrar DevOps, no en persistencia avanzada. LocalStorage es suficiente para mostrar que los datos sobreviven a una recarga sin necesidad de servidor.
+
+**¿Qué hace GitHub Actions exactamente?**
+
+Cada vez que se sube código a la rama `main`, GitHub Actions descarga el código, instala las dependencias y ejecuta `npm run build`. Si el proyecto no compila, el pipeline falla y avisa al equipo antes de que el error llegue a producción.
+
+**¿Qué diferencia hay entre integración continua y despliegue continuo?**
+
+La integración continua verifica que el código compila y pasa pruebas automáticamente. El despliegue continuo publica el resultado en un servidor accesible al público. En este proyecto, Render hace el despliegue automático después de que CI pasa.
+
+**¿Por qué tienen dos versiones del sistema?**
+
+Para demostrar la variabilidad de software. El mismo sistema puede existir en una versión básica para clientes con presupuesto reducido y en una versión avanzada con más funcionalidades. Los tags de Git hacen posible acceder a cualquier versión en cualquier momento.
+
+**¿Qué es un commit atómico?**
+
+Un commit que contiene un solo cambio con un propósito claro. Facilita revisar el historial, revertir errores y entender qué se hizo y por qué. En este proyecto cada commit está enfocado en un cambio específico.
