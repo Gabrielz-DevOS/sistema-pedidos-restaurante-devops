@@ -12,6 +12,17 @@ Este documento registra los cambios solicitados para el Sistema de Pedidos de Re
 | CH-004 | Agregar estados del pedido | Controlar el avance de cada pedido | Integrante 4 | 10/07/2026 | Aprobado |
 | CH-005 | Agregar resumen de ventas | Visualizar información general del restaurante | Integrante 5 | 11/07/2026 | Aprobado |
 
+## Detalle por cambio
+
+### CH-001: Crear registro de pedidos
+
+Este cambio fue el punto de partida del sistema. Se implementó un formulario que permite a los usuarios del restaurante ingresar el nombre del cliente y seleccionar los productos del menú. Al confirmar, el pedido queda almacenado y visible en la lista. Técnicamente se implementó con:
+
+- Componente `OrderForm.jsx`: contiene el formulario con el campo de nombre de cliente y el selector de productos.
+- Componente `OrderList.jsx`: recibe la lista de pedidos y la renderiza en pantalla.
+- Función `validateOrder()` en `src/utils/orderUtils.js`: valida que el pedido tenga nombre y al menos un producto antes de guardarlo.
+- Función `saveOrders()` en `src/utils/storage.js`: persiste los pedidos en LocalStorage para que sobrevivan a recargas del navegador.
+
 ## Ejemplo explicado
 
 El cliente pidió agregar búsqueda de pedidos porque, al aumentar la cantidad de pedidos registrados, era difícil encontrar rápidamente los pedidos de un cliente específico. El cambio quedó registrado como `CH-003`, fue aprobado el 10/07/2026 y se implementó en la versión `v2.0`.
