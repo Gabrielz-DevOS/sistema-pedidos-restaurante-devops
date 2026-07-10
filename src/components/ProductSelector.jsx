@@ -13,11 +13,11 @@ function ProductSelector({ quantities, onQuantityChange }) {
       <div className="product-list">
         {menuItems.map((product) => (
           <div className="product-row" key={product.id}>
-            <div>
+            <div className="product-info">
               <strong>{product.name}</strong>
               <span>{product.category}</span>
             </div>
-            <p>{formatCurrency(product.price)}</p>
+            <p className="product-price">{formatCurrency(product.price)}</p>
             <div className="counter-controls">
               <button
                 type="button"
@@ -25,7 +25,7 @@ function ProductSelector({ quantities, onQuantityChange }) {
                 onClick={() => onQuantityChange(product.id, Math.max(0, (quantities[product.id] || 0) - 1))}
                 aria-label={`Disminuir cantidad de ${product.name}`}
               >
-                -
+                −
               </button>
               <span className="counter-value">{quantities[product.id] || 0}</span>
               <button
@@ -50,3 +50,4 @@ ProductSelector.propTypes = {
 };
 
 export default ProductSelector;
+

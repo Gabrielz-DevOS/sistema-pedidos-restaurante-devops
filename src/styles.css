@@ -416,9 +416,10 @@ h3 {
   border-bottom: 0;
 }
 
-.product-row > div:first-child {
+.product-info {
   display: grid;
   gap: 2px;
+  min-width: 0;
 }
 
 .product-row p {
@@ -1123,44 +1124,76 @@ button:disabled {
     gap: 10px;
   }
 
-  /* Product rows — horizontal compact layout on mobile */
+  /* Product rows — card layout on mobile */
   .product-row {
-    grid-template-columns: 1fr auto auto;
-    gap: 10px;
-    padding: 10px 12px;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--color-border-light);
   }
 
-  .product-row > div:first-child strong {
-    font-size: 0.82rem;
+  .product-row:last-child {
+    border-bottom: 0;
   }
 
-  .product-row > div:first-child span {
-    font-size: 0.72rem;
+  /* Top section: name + price side by side */
+  .product-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px 6px;
   }
 
-  .product-row p {
+  .product-info strong {
+    font-size: 0.88rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .product-info span {
+    display: none;
+  }
+
+  /* Price inline next to name */
+  .product-price {
     text-align: right;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     white-space: nowrap;
+    padding: 10px 12px 6px 0;
+    align-self: center;
   }
 
-  /* Make counter controls more touch-friendly */
+
+  /* Bottom section: counter controls full width */
   .counter-controls {
-    padding: 2px;
-    gap: 2px;
-    border-radius: 8px;
+    margin: 0 12px 10px;
+    padding: 4px;
+    gap: 4px;
+    border-radius: 10px;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .counter-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
-    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .counter-value {
-    min-width: 22px;
-    font-size: 0.95rem;
+    min-width: 32px;
+    font-size: 1rem;
+  }
+
+  /* Make product-row a visual card on mobile */
+  .product-list {
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   /* Drawer full width on mobile */
