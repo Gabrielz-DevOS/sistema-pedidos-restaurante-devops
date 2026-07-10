@@ -23,10 +23,25 @@ export function validateOrder(orderData) {
     };
   }
 
+  if (orderData.customerName.trim().length > 60) {
+    return {
+      isValid: false,
+      message: 'El nombre del cliente no puede superar los 60 caracteres.',
+    };
+  }
+
   if (orderData.items.length === 0) {
     return {
       isValid: false,
       message: 'Seleccione al menos un producto del menú.',
+    };
+  }
+
+  const totalQuantity = orderData.items.reduce((sum, item) => sum + item.quantity, 0);
+  if (totalQuantity > 50) {
+    return {
+      isValid: false,
+      message: 'Un pedido no puede contener más de 50 unidades en total.',
     };
   }
 
