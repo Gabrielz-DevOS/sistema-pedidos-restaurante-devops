@@ -18,7 +18,7 @@ function Sidebar() {
           <path d="m6 8-4 4 4 4" />
           <path d="m14.5 4-5 16" />
         </svg>
-        <span>RestoDev</span>
+        <span>RestoDev-V.2</span>
       </div>
       <nav className="sidebar-nav">
         <ul>
