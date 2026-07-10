@@ -187,8 +187,30 @@ export function formatCurrency(value) {
  * @returns {string} Fecha formateada (ej. "10/7/26, 5:00 a.m.").
  */
 export function formatDate(dateValue) {
+  const date = new Date(dateValue);
+  const now = new Date();
+  const diffMs = now - date;
+  
+  // Si la fecha es inválida o futura
+  if (isNaN(date.getTime()) || diffMs < 0) {
+    return 'Fecha inválida';
+  }
+  
+  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMins < 1) {
+    return 'Hace un momento';
+  }
+  if (diffMins < 60) {
+    return `Hace ${diffMins} min`;
+  }
+  
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) {
+    return `Hace ${diffHours} h`;
+  }
+
   return new Intl.DateTimeFormat('es-EC', {
     dateStyle: 'short',
     timeStyle: 'short',
-  }).format(new Date(dateValue));
+  }).format(date);
 }
