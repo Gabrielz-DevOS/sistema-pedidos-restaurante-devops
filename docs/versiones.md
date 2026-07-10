@@ -78,7 +78,34 @@ Ver historial:
 git log --oneline --decorate --graph --all
 ```
 
-Ver tags:
+## Etiquetas (tags) en Git
+
+Un **tag** es una referencia fija a un commit específico del historial. A diferencia de las ramas, los tags no avanzan: permanecen siempre apuntando al mismo commit. Se usan para marcar momentos importantes en el desarrollo del proyecto, como la publicación de una versión funcional.
+
+### Tags del proyecto
+
+| Tag | Commit asociado | Descripción |
+|---|---|---|
+| `v1.0` | Primer commit de funcionalidades básicas | Registro, listado y cálculo de pedidos |
+| `v2.0` | Commit con funcionalidades avanzadas | Búsqueda, filtros, estados y resumen |
+
+### Cómo crear un tag
+
+```bash
+# Crear un tag ligero
+git tag v1.0
+
+# Crear un tag anotado con mensaje (recomendado)
+git tag -a v1.0 -m "Version 1.0: registro basico de pedidos"
+
+# Publicar el tag en GitHub
+git push origin v1.0
+
+# Publicar todos los tags a la vez
+git push origin --tags
+```
+
+### Ver tags disponibles
 
 ```bash
 git tag
