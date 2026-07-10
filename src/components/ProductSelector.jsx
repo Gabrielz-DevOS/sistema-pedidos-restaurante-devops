@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { menuItems } from '../data/menu.js';
 import { formatCurrency } from '../utils/orderUtils.js';
 
@@ -31,5 +32,10 @@ function ProductSelector({ quantities, onQuantityChange }) {
     </div>
   );
 }
+
+ProductSelector.propTypes = {
+  quantities: PropTypes.object.isRequired,
+  onQuantityChange: PropTypes.func.isRequired,
+};
 
 export default ProductSelector;

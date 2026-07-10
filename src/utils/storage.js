@@ -29,6 +29,7 @@ export function saveOrders(orders) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('No se pudieron guardar los pedidos en localStorage:', error);
   }
 }
