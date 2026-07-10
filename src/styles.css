@@ -43,7 +43,7 @@ button {
   padding: 22px 20px;
 }
 
-.system-label,
+.header-label,
 .section-label {
   margin: 0 0 4px;
   color: #6a717d;
@@ -60,7 +60,7 @@ p {
   margin-top: 0;
 }
 
-h1 {
+.header-title {
   margin-bottom: 0;
   font-size: clamp(1.35rem, 2.5vw, 2rem);
   line-height: 1.2;
@@ -76,7 +76,7 @@ h3 {
   font-size: 1rem;
 }
 
-.version-badge,
+.header-version,
 .counter,
 .status-badge {
   display: inline-flex;
