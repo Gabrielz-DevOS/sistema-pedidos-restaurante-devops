@@ -10,7 +10,7 @@ function SalesSummary({ orders }) {
         <span>Total de pedidos</span>
         <strong>{summary.totalOrders}</strong>
       </article>
-      <article>
+      <article className="highlight-card">
         <span>Total vendido</span>
         <strong>{formatCurrency(summary.totalSold)}</strong>
       </article>
