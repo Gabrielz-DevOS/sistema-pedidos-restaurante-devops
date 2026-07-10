@@ -7,6 +7,7 @@ import SalesSummary from './components/SalesSummary.jsx';
 import { getOrders, saveOrders } from './utils/storage.js';
 import {
   FILTER_ALL_STATUS,
+  ORDER_STATUS,
   createOrder,
   filterOrders,
   generateOrderCode,
@@ -21,6 +22,15 @@ function App() {
 
   useEffect(() => {
     saveOrders(orders);
+  }, [orders]);
+
+  useEffect(() => {
+    const pendingCount = orders.filter((o) => o.status === ORDER_STATUS.pending).length;
+    if (pendingCount > 0) {
+      document.title = `(${pendingCount}) Pedidos Pendientes - Restaurante`;
+    } else {
+      document.title = 'Sistema de Pedidos de Restaurante';
+    }
   }, [orders]);
 
   const nextOrderCode = useMemo(() => generateOrderCode(orders), [orders]);
