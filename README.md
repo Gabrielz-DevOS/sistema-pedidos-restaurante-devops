@@ -15,14 +15,17 @@ No utiliza backend, base de datos externa, autenticación ni APIs externas. Los 
 
 ## Tecnologías usadas
 
-- React
-- Vite
-- JavaScript
-- CSS propio
-- LocalStorage
-- Git y GitHub
-- GitHub Actions
-- Render
+| Tecnología | Versión | Propósito en el proyecto |
+|---|---|---|
+| React | 18 | Biblioteca de interfaz de usuario basada en componentes |
+| Vite | 5 | Empaquetador y servidor de desarrollo rápido |
+| JavaScript (ES2022) | — | Lógica de la aplicación y funciones utilitarias |
+| CSS propio | — | Estilos visuales de la interfaz |
+| LocalStorage (API Web) | — | Persistencia de pedidos en el navegador |
+| Git | 2.x | Control de versiones local |
+| GitHub | — | Repositorio remoto y colaboración |
+| GitHub Actions | — | Integración continua (CI): build automático |
+| Render | — | Despliegue continuo (CD): publicación del sitio estático |
 
 ## Funcionalidades
 
