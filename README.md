@@ -43,6 +43,18 @@ No utiliza backend, base de datos externa, autenticación ni APIs externas. Los 
 - Eliminar pedidos.
 - Mostrar resumen de ventas: total de pedidos, total vendido, pendientes y entregados.
 
+## Prerequisitos
+
+Antes de instalar el proyecto, asegúrese de tener instalado:
+
+| Herramienta | Versión mínima | Verificar con |
+|---|---|---|
+| Node.js | 18 o superior (recomendado: 20 LTS) | `node --version` |
+| npm | 9 o superior | `npm --version` |
+| Git | 2.30 o superior | `git --version` |
+
+Navegadores compatibles: Chrome 90+, Firefox 88+, Edge 90+, Safari 14+.
+
 ## Instalación
 
 ```bash
