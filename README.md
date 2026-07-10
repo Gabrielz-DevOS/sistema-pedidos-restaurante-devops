@@ -1,5 +1,10 @@
 # Sistema de Pedidos de Restaurante DevOps
 
+![CI](https://github.com/Gabrielz-DevOS/sistema-pedidos-restaurante-devops/actions/workflows/ci.yml/badge.svg)
+![Rama principal](https://img.shields.io/badge/rama-main-blue)
+![Versión](https://img.shields.io/badge/versión-2.0-green)
+![Licencia](https://img.shields.io/badge/licencia-académica-orange)
+
 Proyecto académico final integrador para la asignatura Gestión de la Configuración de Software.
 
 ## Descripción
