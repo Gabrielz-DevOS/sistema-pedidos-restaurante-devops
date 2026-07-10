@@ -48,8 +48,14 @@ button {
 }
 
 .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: var(--color-panel-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .header-content {
@@ -68,7 +74,7 @@ button {
   color: var(--color-text-muted);
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -81,7 +87,8 @@ p {
 
 .header-title {
   margin-bottom: 0;
-  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-weight: 800;
   line-height: 1.2;
 }
 
@@ -95,7 +102,22 @@ h3 {
   font-size: 1rem;
 }
 
-.header-version,
+.header-version {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 12px;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+}
+
 .counter,
 .status-badge {
   display: inline-flex;
@@ -108,6 +130,8 @@ h3 {
   background: var(--color-bg);
   color: var(--color-text-dark);
   font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
   font-weight: 700;
   white-space: nowrap;
 }
