@@ -1,11 +1,4 @@
-export const ORDER_STATUS = {
-  pending: 'Pendiente',
-  preparing: 'En preparación',
-  delivered: 'Entregado',
-};
-
-export const ORDER_STATUS_OPTIONS = Object.values(ORDER_STATUS);
-export const FILTER_ALL_STATUS = 'Todos';
+export { ORDER_STATUS, ORDER_STATUS_OPTIONS, FILTER_ALL_STATUS } from '../constants/orderStatus.js';
 
 export function calculateOrderTotal(items) {
   return items.reduce((total, item) => total + item.price * item.quantity, 0);
