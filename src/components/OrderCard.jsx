@@ -51,7 +51,11 @@ function OrderCard({ order, onStatusChange, onDeleteOrder }) {
       <div className="order-actions">
         <label>
           Estado
-          <select value={order.status} onChange={(event) => onStatusChange(order.id, event.target.value)}>
+          <select
+            value={order.status}
+            onChange={(event) => onStatusChange(order.id, event.target.value)}
+            aria-label={`Cambiar estado del pedido ${order.code}`}
+          >
             {ORDER_STATUS_OPTIONS.map((status) => (
               <option key={status} value={status}>
                 {status}
@@ -59,7 +63,12 @@ function OrderCard({ order, onStatusChange, onDeleteOrder }) {
             ))}
           </select>
         </label>
-        <button className="secondary-button danger-button" type="button" onClick={() => onDeleteOrder(order)}>
+        <button
+          className="secondary-button danger-button"
+          type="button"
+          onClick={() => onDeleteOrder(order)}
+          aria-label={`Eliminar pedido ${order.code} de ${order.customerName}`}
+        >
           Eliminar
         </button>
       </div>
