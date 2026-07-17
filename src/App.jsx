@@ -14,8 +14,11 @@ import {
   updateOrderStatus,
 } from './utils/orderUtils.js';
 
+import ClientsView from './components/ClientsView.jsx';
+
 function App() {
   const [orders, setOrders] = useState(() => getOrders());
+  const [activeView, setActiveView] = useState('orders'); // 'orders' | 'clients'
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -66,26 +69,44 @@ function App() {
     }
   }
 
+  const handleNavigate = (view) => {
+    setActiveView(view);
+    setIsSidebarOpen(false); // Cierra el menú en móvil al navegar
+  };
 
   return (
     <div className={`dashboard-layout ${isSidebarOpen ? 'sidebar-mobile-open' : ''}`}>
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onClose={() => setIsSidebarOpen(false)} 
+        activeView={activeView}
+        onNavigate={handleNavigate}
+      />
       <div className="dashboard-main">
         <Header
+          activeView={activeView}
           onOpenNewOrder={() => setIsDrawerOpen(true)}
           onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
         />
         
         <main className="dashboard-content">
-          <SalesSummary orders={orders} />
+          {activeView === 'orders' && (
+            <>
+              <SalesSummary orders={orders} />
 
-          <section className="kanban-section" aria-labelledby="order-list-title">
-            <OrderList
-              orders={orders}
-              onStatusChange={handleStatusChange}
-              onDeleteOrder={handleDeleteOrder}
-            />
-          </section>
+              <section className="kanban-section" aria-labelledby="order-list-title">
+                <OrderList
+                  orders={orders}
+                  onStatusChange={handleStatusChange}
+                  onDeleteOrder={handleDeleteOrder}
+                />
+              </section>
+            </>
+          )}
+
+          {activeView === 'clients' && (
+            <ClientsView />
+          )}
         </main>
       </div>
 
